@@ -1,14 +1,15 @@
 LIBDIR := lib
-TESTDIR := test
 SRCDIR := src
+TESTDIR := test
+BINDIR := bin
 
 DEPDIR := .dep
 OBJDIR := .obj
 
-$(shell mkdir -p $(DEPDIR) >/dev/null)
+$(shell mkdir -p $(DEPDIR)/$(LIBDIR) $(OBJDIR)/$(LIBDIR) >/dev/null)
+$(shell mkdir -p $(DEPDIR)/$(SRCDIR) $(OBJDIR)/$(SRCDIR) >/dev/null)
+$(shell mkdir -p $(DEPDIR)/$(TESTDIR) $(OBJDIR)/$(TESTDIR) >/dev/null)
   #-p don't emit error if existing, make parent directories as needed
-$(shell mkdir -p $(OBJDIR) >/dev/null)
-
 
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
   #-MT change the target of the rule
@@ -32,35 +33,25 @@ POSTCOMPILE = @mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d && touch $@
   #-f no prompt before overwrite
 
 LIBS = $(wildcard $(LIBDIR)/*.cxx)
-  #wildcard otherwise expansion isn't automatic when variable is set
 TESTS = $(wildcard $(TESTDIR)/*.cxx)
-SRCS = $(wildcard $(SRCDIR)/*.cxx)
+  #wildcard otherwise expansion isn't automatic when variable is set
 
-OBJECTS = $(patsubst $(LIBDIR)/%.cxx,$(OBJDIR)/%.o,$(LIBS))
+OBJECTS = $(patsubst $(LIBDIR)/%.cxx,$(OBJDIR)/$(LIBDIR)/%.o,$(LIBS))
+TESTOBJS = $(patsubst $(TESTDIR)/%.cxx,$(OBJDIR)/$(TESTDIR)/%.o,$(TESTS))
   #patsubst pattern substitution pattern,replacement,text
-TESTOBJS = $(patsubst $(TESTDIR)/%.cxx,$(OBJDIR)/%.to,$(TESTS))
 
-burr_v2.exe : $(OBJECTS) $(OBJDIR)/burr_v2.mo
-	g++ $(CPPFLAGS) -o burr_v2.exe $(OBJECTS) $(OBJDIR)/burr_v2.mo
+burr : $(OBJECTS) $(OBJDIR)/$(SRCDIR)/burr_v2.o
+	g++ $(CPPFLAGS) -o $(BINDIR)/burr_v2.exe \
+	$(OBJECTS) $(OBJDIR)/$(SRCDIR)/burr_v2.o
 
-run_test.exe : $(OBJECTS) $(TESTOBJS)
-	g++ $(CPPFLAGS) -o run_test.exe $(OBJECTS) $(TESTOBJS)
+tests : $(OBJECTS) $(TESTOBJS)
+	g++ $(CPPFLAGS) -o $(BINDIR)/run_test.exe $(OBJECTS) $(TESTOBJS)
 
-$(OBJDIR)/%.o : $(LIBDIR)/%.cxx
+$(OBJDIR)/%.o : %.cxx
   #cancels built-in implicit rule
-$(OBJDIR)/%.to : $(LIBDIR)/%.cxx
-$(OBJDIR)/%.mo : $(LIBDIR)/%.cxx
 
-$(OBJDIR)/%.o : $(LIBDIR)/%.cxx $(DEPDIR)/%.d
+$(OBJDIR)/%.o : %.cxx $(DEPDIR)/%.d
 	$(COMPILE) $(OUTPUT_OPTION) $<
-	$(POSTCOMPILE)
-
-$(OBJDIR)/%.to : $(TESTDIR)/%.cxx $(DEPDIR)/%.d
-	$(COMPILE) -I $(LIBDIR) $(OUTPUT_OPTION) $<
-	$(POSTCOMPILE)
-
-$(OBJDIR)/%.mo : $(SRCDIR)/%.cxx $(DEPDIR)/%.d
-	$(COMPILE) -I $(LIBDIR) $(OUTPUT_OPTION) $<
 	$(POSTCOMPILE)
 
   #OUTPUT_OPTION empty or -o $@
@@ -72,13 +63,11 @@ $(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d
   #.PRECIOUS preserve despite being intermediate files
 
-include $(wildcard $(patsubst $(LIBDIR)/%,$(DEPDIR)/%.d,$(basename $(LIBS))))
+include $(DEPDIR)/$(SRCDIR)/burr_v2.d
+include $(wildcard $(patsubst %,$(DEPDIR)/%.d,$(basename $(LIBS) $(TESTS))))
   #basename extract name without suffix
-include $(wildcard $(patsubst $(TESTDIR)/%,$(DEPDIR)/%.d,$(basename $(TESTS))))
-include $(wildcard $(patsubst $(SRCDIR)/%,$(DEPDIR)/%.d,$(basename $(SRCS))))
 
 .PHONY : clean
   #.PHONY not really name of file
 clean :
-	rm -f burr_v2.exe run_test.exe $(OBJDIR)/* $(DEPDIR)/*
-
+	rm -f $(BINDIR)/* $(DEPDIR)/*/* $(OBJDIR)/*/*
