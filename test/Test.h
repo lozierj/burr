@@ -5,6 +5,7 @@
 #include <string>
 
 void Test_Piece();
+void Test_Coordinates();
 
 template<typename T, typename U>
 void test_equal(T t, U u, std::string msg = "failed equality")
