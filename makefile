@@ -40,6 +40,9 @@ OBJECTS = $(patsubst $(LIBDIR)/%.cxx,$(OBJDIR)/$(LIBDIR)/%.o,$(LIBS))
 TESTOBJS = $(patsubst $(TESTDIR)/%.cxx,$(OBJDIR)/$(TESTDIR)/%.o,$(TESTS))
   #patsubst pattern substitution pattern,replacement,text
 
+.PHONY: all
+all: burr tests
+
 burr : $(OBJECTS) $(OBJDIR)/$(SRCDIR)/burr_v2.o
 	g++ $(CPPFLAGS) -o $(BINDIR)/burr_v2.exe \
 	$(OBJECTS) $(OBJDIR)/$(SRCDIR)/burr_v2.o

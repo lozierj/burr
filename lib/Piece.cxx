@@ -34,8 +34,11 @@ bool Piece::IsOccupied(Coordinates coord) const
   int xBit{(coord.x + 1) << 2};
   int yBit{(coord.y - 1) << 3};
   int zBit{(coord.z + 5) >> 1};
+  Type bit{1u << (xBit + yBit + zBit)};
 
-  return mData & (1 << (xBit + yBit + zBit));
+  if (!(0x3F3F3F3F & bit)) throw std::logic_error("bit out of bounds");
+
+  return mData & bit;
 }
 
 bool Piece::IsConnected() const

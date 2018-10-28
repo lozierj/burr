@@ -1,3 +1,7 @@
+#pragma once
+
+#include <ostream>
+
 struct Coordinates{
   using Type = signed char;
 
@@ -7,7 +11,14 @@ struct Coordinates{
   bool IsCube() const {return x & y & z & 1;}
   bool IsDelta() const {return !((x | y | z) & 1);}
 
+  bool operator==(const Coordinates&) const;
+  bool operator!=(const Coordinates& rhs) const {return !(*this == rhs);}
+
+  friend std::ostream& operator<<(std::ostream&, const Coordinates&);
+
   Type x;
   Type y;
   Type z;
 };
+
+std::ostream& operator<<(std::ostream&, const Coordinates&);

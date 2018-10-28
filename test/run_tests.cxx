@@ -1,10 +1,19 @@
 #include "Test.h"
 
+#include <exception>
+
 int main()
 {
-  Test_Piece();
-  Test_Coordinates();
+  try {
+    Test_Piece();
+    Test_Coordinates();
+    Test_Rotate();
+    Test_Reflect();
 
-  std::cout << "All tests completed." << std::endl;
-  return 0;
+    std::cout << "All tests completed." << std::endl;
+    return 0;
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << std::endl;
+    return 1;
+  }
 }
