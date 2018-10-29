@@ -9,6 +9,7 @@ int main()
     Test_Coordinates();
     Test_Rotate();
     Test_Reflect();
+    Test_PointGroup();
 
     std::cout << "All tests completed." << std::endl;
     return 0;
