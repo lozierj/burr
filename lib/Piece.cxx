@@ -27,12 +27,12 @@ bool Piece::IsOccupied(Coordinates coord) const
 {
   if (!coord.IsCube()) throw std::logic_error("coord not aligned");
 
-  if (coord.x < -2 || coord.x > 2) throw std::logic_error("x out of bounds");
-  if (coord.y <  0 || coord.y > 4) throw std::logic_error("y out of bounds");
+  if (coord.x <  0 || coord.x > 4) throw std::logic_error("x out of bounds");
+  if (coord.y < -2 || coord.y > 2) throw std::logic_error("y out of bounds");
   if (coord.z < -6 || coord.z > 6) throw std::logic_error("z out of bounds");
 
-  int xBit{(coord.x + 1) << 2};
-  int yBit{(coord.y - 1) << 3};
+  int xBit{(coord.x - 1) << 3};
+  int yBit{(coord.y + 1) << 2};
   int zBit{(coord.z + 5) >> 1};
   Type bit{1u << (xBit + yBit + zBit)};
 
@@ -47,10 +47,10 @@ bool Piece::IsConnected() const
     bool conn{false};
 
     Coordinates::Type z2(z1 + 2);
-    conn = conn || (IsOccupied({-1, 1, z1}) && IsOccupied({-1, 1, z2}));
-    conn = conn || (IsOccupied({-1, 3, z1}) && IsOccupied({-1, 3, z2}));
-    conn = conn || (IsOccupied({ 1, 1, z1}) && IsOccupied({ 1, 1, z2}));
-    conn = conn || (IsOccupied({ 1, 3, z1}) && IsOccupied({ 1, 3, z2}));
+    conn = conn || (IsOccupied({1, -1, z1}) && IsOccupied({1, -1, z2}));
+    conn = conn || (IsOccupied({3, -1, z1}) && IsOccupied({3, -1, z2}));
+    conn = conn || (IsOccupied({1,  1, z1}) && IsOccupied({1,  1, z2}));
+    conn = conn || (IsOccupied({3,  1, z1}) && IsOccupied({3,  1, z2}));
 
     if (!conn) {
       return false;
