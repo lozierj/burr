@@ -11,6 +11,7 @@ public:
   bool IsProper() const {return 1u << mValue & 0x69;}
 
   Coordinates Apply(const Coordinates&) const;
+  Coordinates Invert(const Coordinates& in) const {return Apply(in);}
 
 private:
   Type mValue;

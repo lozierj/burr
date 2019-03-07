@@ -7,3 +7,8 @@ Coordinates PointGroup::Apply(const Coordinates& in) const
 {
   return mRotate.Apply(mReflect.Apply(in));
 }
+
+Coordinates PointGroup::Invert(const Coordinates& in) const
+{
+  return mReflect.Invert(mRotate.Invert(in));
+}

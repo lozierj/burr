@@ -32,4 +32,9 @@ void Test_PointGroup()
   test_equal(t.Apply(p), x.Apply(p));
   test_equal(u.Apply(p), a.Apply(p));
   test_equal(v.Apply(p), b.Apply(xy.Apply(p)));
+
+  test_equal(v.Invert(p), xy.Invert(b.Invert(p)));
+
+  test_equal(v.Apply(v.Invert(p)), p);
+  test_equal(v.Invert(v.Apply(p)), p);
 }

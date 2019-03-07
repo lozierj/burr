@@ -11,6 +11,7 @@ public:
   bool IsProper() const {return mReflect.IsProper();}
 
   Coordinates Apply(const Coordinates& in) const;
+  Coordinates Invert(const Coordinates& in) const;
 
 private:
   Reflect mReflect;

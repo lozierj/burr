@@ -9,6 +9,7 @@ public:
   explicit Rotate(Type);
 
   Coordinates Apply(const Coordinates&) const;
+  Coordinates Invert(const Coordinates&) const;
 
 private:
   Type mValue;

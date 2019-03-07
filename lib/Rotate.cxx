@@ -17,3 +17,13 @@ Coordinates Rotate::Apply(const Coordinates& in) const
     default: throw std::logic_error("bad rotation magnitude");
   }
 }
+
+Coordinates Rotate::Invert(const Coordinates& in) const
+{
+  switch (mValue){
+    case 0: return in;
+    case 1: return {in.y, in.z, in.x};
+    case 2: return {in.z, in.x, in.y};
+    default: throw std::logic_error("bad rotation magnitude");
+  }
+}

@@ -24,8 +24,8 @@ void Test_Reflect()
   test_equal(xy.Apply(n), n);
 
   test_equal(xy.Apply(d), Coordinates{-1, -3, -5});
-  test_equal(yz.Apply(d), Coordinates{1, -3, 5});
+  test_equal(yz.Invert(d), Coordinates{1, -3, 5});
 
   test_equal(xy.Apply(xy.Apply(d)), d);
-  test_equal(xy.Apply(yz.Apply(d)), xz.Apply(d));
+  test_equal(xy.Apply(yz.Invert(d)), xz.Apply(d));
 }

@@ -24,4 +24,7 @@ void Test_Rotate()
   test_equal(f.Apply(r.Apply(d)), d);
   test_equal(r.Apply(f.Apply(b)), b);
   test_equal(f.Apply(f.Apply(b)), r.Apply(b));
+
+  test_equal(f.Apply(f.Invert(d)), d);
+  test_equal(f.Apply(b), r.Invert(b));
 }
