@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ostream>
+
 #include "Coordinates.h"
 
 class Piece{
@@ -15,3 +17,5 @@ private:
 
   Type mData;
 };
+
+std::ostream& operator<<(std::ostream&, const Piece&);
