@@ -10,6 +10,7 @@ int main()
     Test_Rotate();
     Test_Reflect();
     Test_PointGroup();
+    Test_TestFit();
 
     std::cout << "All tests completed." << std::endl;
     return 0;

@@ -7,6 +7,7 @@
 class PointGroup{
 public:
   PointGroup(const Reflect& ref, const Rotate& rot);
+  PointGroup(Reflect::Type, Rotate::Type);
 
   bool IsProper() const {return mReflect.IsProper();}
 
