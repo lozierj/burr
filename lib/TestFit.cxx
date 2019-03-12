@@ -37,7 +37,7 @@ bool TestFit(Piece a, unsigned ap, Piece b, unsigned bp)
       for (Coordinates::Type z(zi + 1); z < zf; z += 2) {
         bool ao{a.IsOccupied(transform[ap].Invert({x, y, z}))};
         bool bo{b.IsOccupied(transform[bp].Invert({x, y, z}))};
-        if (ao & bo) return false;
+        if (ao && bo) return false;
       }
     }
   }
