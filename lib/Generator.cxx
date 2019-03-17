@@ -17,11 +17,11 @@ void Generator::Iterate(Position k)
     return;
   }
 
-  for (Index p{0}; p < mNum; ++p){
+  for (Index p{0}; p < mFitTable.GetSize(); ++p){
     if (k == 0) std::cout << "." << std::flush;
 
     mAssembly[k] = p;
-    if (mAssembly.Fits(k)) Iterate(k + 1);
+    if (mAssembly.Fits(mFitTable, k)) Iterate(k + 1);
   }
 }
 

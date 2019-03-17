@@ -6,14 +6,13 @@
 
 class Generator{
 public:
-  Generator(const FitTable& ft) : mTable{ft}, mNum{mTable.GetSize()} {}
+  Generator(const FitTable& ft) : mFitTable{ft} {}
   void Generate();
 
 private:
   void Iterate(Position);
 
-  const FitTable& mTable;
-  const Index mNum;
+  const FitTable& mFitTable;
   Assembly mAssembly;
-  unsigned long mCount;
+  unsigned long mCount; //TODO make generate take a std ftn, make this static
 };

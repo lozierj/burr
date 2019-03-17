@@ -5,17 +5,7 @@
 
 void Test_FitTable()
 {
-  std::vector<Piece> notchables;
-
-  for (unsigned short n{0}; n < 1<<10; ++n)
-  {
-    Piece p(Piece::Notchable(n));
-    if (p.IsConnected()) {
-      notchables.push_back(p);
-    }
-  }
-
-  FitTable ft(notchables);
+  FitTable ft;
 
   test_equal(ft(  0, 0, 12, 1), true);
   test_equal(ft(140, 0,  4, 4), true);

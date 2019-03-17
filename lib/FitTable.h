@@ -19,5 +19,3 @@ private:
   using Table = std::array<std::vector<Lookup>, 6>;
   Table mTable;
 };
-
-const FitTable cFitTable;
