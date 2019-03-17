@@ -5,7 +5,7 @@
 #include "PointGroup.h"
 #include "TestFit.h"
 
-bool TestFit(Piece a, unsigned ap, Piece b, unsigned bp)
+bool TestFit(Piece a, Position ap, Piece b, Position bp)
 {
   if (ap >= 6 || bp >= 6) throw std::logic_error("bad position");
 

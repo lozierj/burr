@@ -1,17 +1,23 @@
+#pragma once
+
 #include <array>
 #include <vector>
 
+#include "Index.h"
 #include "Piece.h"
+#include "Position.h"
+#include "Notchables.h"
 
 class FitTable{
 public:
-  using Index = unsigned;
-  FitTable(const std::vector<Piece>&);
-  bool operator()(Index ai, unsigned ap, Index bi, unsigned bp) const;
-  Index GetSize() const {return mTable[0].size();}
+  FitTable(const std::vector<Piece>& = Notchables());
+  bool operator()(Index ai, Position ap, Index bi, Position bp) const;
+  Index GetSize() const {return static_cast<Index>(mTable[0].size());}
 
 private:
   using Lookup = std::array<std::vector<bool>, 6>;
   using Table = std::array<std::vector<Lookup>, 6>;
   Table mTable;
 };
+
+const FitTable cFitTable;

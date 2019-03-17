@@ -24,7 +24,7 @@ FitTable::FitTable(const std::vector<Piece>& vec)
   }
 }
 
-bool FitTable::operator()(Index ai, unsigned ap, Index bi, unsigned bp) const
+bool FitTable::operator()(Index ai, Position ap, Index bi, Position bp) const
 {
   assert(ap < 6 && bp < 6 && ai < mTable[0].size() && bi < mTable[0].size());
   return mTable[ap][ai][bp][bi];
