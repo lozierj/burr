@@ -11,6 +11,7 @@ void Test_Reflect();
 void Test_PointGroup();
 void Test_TestFit();
 void Test_FitTable();
+void Test_TestReflect();
 
 template<typename T, typename U>
 void test_equal(T t, U u, std::string msg = "failed equality")

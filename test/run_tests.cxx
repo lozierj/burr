@@ -12,6 +12,7 @@ int main()
     Test_PointGroup();
     Test_TestFit();
     Test_FitTable();
+    Test_TestReflect();
 
     std::cout << "All tests completed." << std::endl;
     return 0;

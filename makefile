@@ -20,7 +20,7 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
   #  -MF with -MMD overrides default dependency output file
   #    $* stem with which an implicit rule matches (part that matches %)
 
-CPPFLAGS = -Wall -Wextra
+CPPFLAGS = -Wall -Wextra -O3
   #-Wall -Wextra warnings
   #-O3 max opt
   #-g produce debugging information
