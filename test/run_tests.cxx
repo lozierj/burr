@@ -13,6 +13,7 @@ int main()
     Test_TestFit();
     Test_FitTable();
     Test_TestReflect();
+    Test_ReflectTable();
 
     std::cout << "All tests completed." << std::endl;
     return 0;
