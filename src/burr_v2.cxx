@@ -5,7 +5,8 @@
 int main()
 {
   FitTable ft;
+  ReflectTable rt;
 
-  Generator g(ft);
+  Generator g(ft, rt);
   g.Generate();
 }

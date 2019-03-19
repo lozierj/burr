@@ -19,6 +19,8 @@ ReflectTable::ReflectTable(const std::vector<Piece>& vec)
         }
       }
     }
+
+    assert(mTable[r.GetRep()].size() == n);
   }
 }
 

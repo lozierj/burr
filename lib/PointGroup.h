@@ -14,6 +14,9 @@ public:
   Coordinates Apply(const Coordinates& in) const;
   Coordinates Invert(const Coordinates& in) const;
 
+  Reflect GetReflect() const {return mReflect;}
+  Rotate GetRotate() const {return mRotate;}
+
 private:
   Reflect mReflect;
   Rotate mRotate;

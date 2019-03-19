@@ -8,6 +8,8 @@ public:
 
   explicit Rotate(Type);
 
+  Type GetRep() const {return mValue;}
+
   Coordinates Apply(const Coordinates&) const;
   Coordinates Invert(const Coordinates&) const;
 

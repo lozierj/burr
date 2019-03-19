@@ -13,7 +13,7 @@ void Generator::Generate()
 void Generator::Iterate(Position k)
 {
   if (k == 6){
-    ++mCount;
+    if (mAssembly.Oriented(mReflectTable)) ++mCount;
     return;
   }
 
