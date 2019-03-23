@@ -11,7 +11,7 @@
 class Assembly{
 public:
   bool Fits(const FitTable&, Position) const;
-  bool Oriented(const ReflectTable&) const;
+  bool Oriented(const ReflectTable&, bool proper = true) const;
 
   const Index& operator[](Position p) const {return mData[p];}
   Index& operator[](Position p) {return mData[p];}

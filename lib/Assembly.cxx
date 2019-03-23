@@ -17,10 +17,11 @@ bool Assembly::Fits(const FitTable& ft, Position p) const
   }
 }
 
-bool Assembly::Oriented(const ReflectTable& rt) const
+bool Assembly::Oriented(const ReflectTable& rt, bool proper) const
 {
   for (Reflect::Type ref{0}; ref < 8; ++ref){
     for (Rotate::Type rot{0}; rot < 3; ++rot){
+      if (!(Reflect(ref).IsProper()) && proper) continue;
       if (IsBefore(Orient(rt, {ref, rot}))) return false;
     }
   }
