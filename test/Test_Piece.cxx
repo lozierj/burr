@@ -3,15 +3,17 @@
 
 void Test_Piece()
 {
-  int c{0};
+  Piece y{Piece::Notchable(0x3F)};
+  test_equal(y.IsOccupied({3, -1,  1}), false);
+  test_equal(y.IsOccupied({3, -1, -1}), false);
+  test_equal(y.IsOccupied({3,  1, -1}), true);
+  test_equal(y.IsOccupied({3, -1,  5}), true);
+  test_equal(y.IsConnected(), true);
 
-  for (unsigned short n{0}; n < 1<<10; ++n)
-  {
-    Piece p(Piece::Notchable(n));
-    if (p.IsConnected()) {
-      ++c;
-    }
-  }
-
-  test_equal(c, 147);
+  Piece broken{Piece::Notchable(0x104)};
+  test_equal(broken.IsOccupied({3, -1,  1}), true);
+  test_equal(broken.IsOccupied({3, -1, -1}), false);
+  test_equal(broken.IsOccupied({3,  1, -1}), false);
+  test_equal(broken.IsOccupied({3, -1,  5}), true);
+  test_equal(broken.IsConnected(), false);
 }

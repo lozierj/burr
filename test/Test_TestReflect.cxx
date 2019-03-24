@@ -6,7 +6,7 @@
 
 void Test_TestReflect()
 {
-  std::vector<Piece> n = Notchables();
+  std::vector<Piece> n{Notchables()};
 
   test_equal(TestReflect(n[  9], n[  9], Reflect(0u)), true);
   test_equal(TestReflect(n[  9], n[  9], Reflect(2u)), true);

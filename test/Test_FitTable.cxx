@@ -7,6 +7,8 @@ void Test_FitTable()
 {
   FitTable ft;
 
+  test_equal(ft.GetSize(), 147);
+
   test_equal(ft(  0, 0, 12, 1), true);
   test_equal(ft(140, 0,  4, 4), true);
   test_equal(ft(  4, 1, 40, 2), true);

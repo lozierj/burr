@@ -2,17 +2,11 @@
 
 #include "Test.h"
 #include "../lib/TestFit.h"
+#include "../lib/Notchables.h"
 
 void Test_TestFit()
 {
-  std::vector<Piece> notchables;
-
-  for (unsigned short n{0}; n < 1<<10; ++n) {
-    Piece p(Piece::Notchable(n));
-    if (p.IsConnected()) {
-      notchables.push_back(p);
-    }
-  }
+  std::vector<Piece> notchables{Notchables()};
 
   test_equal(TestFit(notchables[  0], 0, notchables[12], 1), true);
   test_equal(TestFit(notchables[140], 0, notchables[ 4], 4), true);

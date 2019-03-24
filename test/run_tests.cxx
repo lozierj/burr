@@ -5,15 +5,18 @@
 int main()
 {
   try {
-    Test_Piece();
+    Test_Assembly();
     Test_Coordinates();
-    Test_Rotate();
-    Test_Reflect();
-    Test_PointGroup();
-    Test_TestFit();
     Test_FitTable();
-    Test_TestReflect();
+    Test_Generator();
+    Test_Notchables();
+    Test_Piece();
+    Test_PointGroup();
+    Test_Reflect();
     Test_ReflectTable();
+    Test_Rotate();
+    Test_TestFit();
+    Test_TestReflect();
 
     std::cout << "All tests completed." << std::endl;
     return 0;

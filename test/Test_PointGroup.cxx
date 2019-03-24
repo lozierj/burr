@@ -20,7 +20,7 @@ void Test_PointGroup()
   PointGroup gI{fI, oI};
   PointGroup t{x, oI};
   PointGroup u{fI, a};
-  PointGroup v{xy, b};
+  PointGroup v(3u, 2u);
 
   test_equal(gI.IsProper(), true);
   test_equal(t.IsProper(), false);

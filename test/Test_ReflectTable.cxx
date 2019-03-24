@@ -7,6 +7,8 @@ void Test_ReflectTable()
 {
   ReflectTable rt;
 
+  test_equal(rt.GetSize(), 147);
+
   test_equal(rt(  9, Reflect(0u)),   9);
   test_equal(rt(  9, Reflect(2u)),   9);
   test_equal(rt(  9, Reflect(4u)),   9);

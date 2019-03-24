@@ -13,6 +13,11 @@ void Test_TestFit();
 void Test_FitTable();
 void Test_TestReflect();
 void Test_ReflectTable();
+void Test_Assembly();
+void Test_Generator();
+void Test_Index();
+void Test_Position();
+void Test_Notchables();
 
 template<typename T, typename U>
 void test_equal(T t, U u, std::string msg = "failed equality")
