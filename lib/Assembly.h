@@ -10,6 +10,9 @@
 
 class Assembly{
 public:
+  Assembly() : mData{0, 0, 0, 0, 0, 0} {}
+  Assembly(std::array<Index, 6> l) : mData{l} {}
+
   bool Fits(const FitTable&, Position) const;
   bool Oriented(const ReflectTable&, bool proper = true) const;
 
