@@ -4,8 +4,10 @@
 
 int main()
 {
-  FitTable ft;
-  ReflectTable rt;
+  //for (auto p : Notchables32()) std::cout << p << std::endl;
+
+  FitTable ft(Notchables32());
+  ReflectTable rt(Notchables32());
 
   Generator g(ft, rt);
   g.Generate();
