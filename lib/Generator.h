@@ -2,20 +2,25 @@
 
 #include "Assembly.h"
 #include "FitTable.h"
-#include "ReflectTable.h"
 #include "Position.h"
+#include "ReflectTable.h"
 
+template<typename F>
 class Generator{
 public:
-  Generator(const FitTable& ft, const ReflectTable& rt)
-      : mFitTable{ft}, mReflectTable{rt} {}
+  Generator(const FitTable& ft, const ReflectTable& rt, F& f)
+      : mFitTable{ft}, mReflectTable{rt}, mFunction{f} {}
+
   void Generate();
+  F& GetFunc() {return mFunction;}
 
 private:
   void Iterate(Position);
 
   const FitTable& mFitTable;
   const ReflectTable& mReflectTable;
+  F& mFunction;
   Assembly mAssembly;
-  unsigned long mCount; //TODO make generate take a std ftn, make this static
 };
+
+#include "Generator.txx"
