@@ -23,4 +23,4 @@ private:
   Assembly mAssembly;
 };
 
-#include "Generator.txx"
+#include "Generator.tcc"
