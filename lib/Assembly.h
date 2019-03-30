@@ -16,8 +16,8 @@ public:
   bool Fits(const FitTable&, Position) const;
   bool Oriented(const ReflectTable&, bool proper = true) const;
 
-  const Index& operator[](Position p) const {return mData[p];}
-  Index& operator[](Position p) {return mData[p];}
+  const Index& operator[](Position p) const;
+  Index& operator[](Position p);
 
 private:
   bool Fits(const FitTable&, Position, Position) const;

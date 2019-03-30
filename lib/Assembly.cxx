@@ -1,3 +1,4 @@
+#include <cassert>
 #include <stdexcept>
 
 #include "Assembly.h"
@@ -29,6 +30,17 @@ bool Assembly::Oriented(const ReflectTable& rt, bool proper) const
   return true;
 }
 
+const Index& Assembly::operator[](Position p) const
+{
+  assert(p < 6);
+  return mData[p];
+}
+
+Index& Assembly::operator[](Position p)
+{
+  assert(p < 6);
+  return mData[p];
+}
 
 bool Assembly::Fits(const FitTable& ft, Position p, Position q) const
 {

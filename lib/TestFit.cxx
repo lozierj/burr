@@ -1,4 +1,5 @@
 #include <array>
+#include <stdexcept>
 
 #include "Coordinates.h"
 #include "Piece.h"
