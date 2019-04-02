@@ -2,7 +2,8 @@
 
 #include <ostream>
 
-struct Coordinates{
+class Coordinates{
+public:
   using Type = signed char;
 
   Coordinates(Type xx, Type yy, Type zz) : x{xx}, y{yy}, z{zz} {}
@@ -14,7 +15,11 @@ struct Coordinates{
   bool operator==(const Coordinates&) const;
   bool operator!=(const Coordinates& rhs) const {return !(*this == rhs);}
 
+  static Coordinates max(const Coordinates&, const Coordinates&);
+  static Coordinates min(const Coordinates&, const Coordinates&);
+
   friend std::ostream& operator<<(std::ostream&, const Coordinates&);
+
 
   Type x;
   Type y;

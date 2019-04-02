@@ -18,6 +18,8 @@ void Test_Generator();
 void Test_Index();
 void Test_Position();
 void Test_Notchables();
+//TODO: Translate
+//TODO: SpaceGroup
 
 template<typename T, typename U>
 void test_equal(T t, U u, std::string msg = "failed equality")

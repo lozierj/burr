@@ -14,7 +14,7 @@ void Test_Generator()
   Counter c;
 
   Generator g(ft, rt, c);
-  g.Generate();
+  //g.Generate();
 
   test_equal(c.tot, 1'173'075u); //not verified
 }
