@@ -29,3 +29,11 @@ Translate operator-(const Translate& lhs, const Translate& rhs)
           static_cast<Translate::Type>(lhs.GetRep().y - rhs.GetRep().y),
           static_cast<Translate::Type>(lhs.GetRep().z - rhs.GetRep().z)};
 }
+
+Translate::Type operator*(const Translate& lhs, const Translate& rhs)
+{
+  return static_cast<Translate::Type>(
+      lhs.GetRep().x*rhs.GetRep().x +
+      lhs.GetRep().y*rhs.GetRep().y +
+      lhs.GetRep().z*rhs.GetRep().z);
+}

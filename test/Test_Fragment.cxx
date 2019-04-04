@@ -59,4 +59,10 @@ void Test_Fragment()
   Partition s5{0b001000u};
   f.Shift(s5, {0, 2, 0});
   test_equal(f.CheckFit(s5, p), true);
+
+  f.Shift(s5, {0, 2, 0});
+  test_equal(f.CheckFree(s5, {0, 1, 0}), false);
+
+  f.Shift(s5, {0, 2, 0});
+  test_equal(f.CheckFree(s5, {0, 1, 0}), true);
 }

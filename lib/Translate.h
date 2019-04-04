@@ -22,3 +22,4 @@ private:
 };
 
 Translate operator-(const Translate&, const Translate&);
+Translate::Type operator*(const Translate&, const Translate&);
