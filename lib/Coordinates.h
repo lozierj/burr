@@ -8,6 +8,7 @@ public:
 
   Coordinates(Type xx, Type yy, Type zz) : x{xx}, y{yy}, z{zz} {}
   explicit Coordinates() : Coordinates(0, 0, 0) {}
+  Coordinates(const Coordinates&) = default;
 
   bool IsCube() const {return x & y & z & 1;}
   bool IsDelta() const {return !((x | y | z) & 1);}

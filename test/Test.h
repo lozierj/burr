@@ -18,6 +18,8 @@ void Test_Generator();
 void Test_Index();
 void Test_Position();
 void Test_Notchables();
+void Test_Partition();
+void Test_Fragment();
 //TODO: Translate
 //TODO: SpaceGroup
 

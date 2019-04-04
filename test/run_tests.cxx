@@ -17,6 +17,8 @@ int main()
     Test_Rotate();
     Test_TestFit();
     Test_TestReflect();
+    Test_Partition();
+    Test_Fragment();
 
     std::cout << "All tests completed." << std::endl;
     return 0;
