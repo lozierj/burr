@@ -19,6 +19,7 @@ int main()
     Test_TestReflect();
     Test_Partition();
     Test_Fragment();
+    Test_Apart();
 
     std::cout << "All tests completed." << std::endl;
     return 0;

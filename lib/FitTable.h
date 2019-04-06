@@ -6,11 +6,10 @@
 #include "Index.h"
 #include "Piece.h"
 #include "Position.h"
-#include "Notchables.h"
 
 class FitTable{
 public:
-  FitTable(const std::vector<Piece>& = Notchables());
+  FitTable(const std::vector<Piece>&);
   bool operator()(Index ai, Position ap, Index bi, Position bp) const;
   Index GetSize() const {return static_cast<Index>(mTable[0].size());}
 

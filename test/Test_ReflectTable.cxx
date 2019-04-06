@@ -2,10 +2,11 @@
 
 #include "Test.h"
 #include "../lib/ReflectTable.h"
+#include "../lib/Notchables.h"
 
 void Test_ReflectTable()
 {
-  ReflectTable rt;
+  ReflectTable rt{Notchables()};
 
   test_equal(rt.GetSize(), 147);
 

@@ -12,7 +12,9 @@ void Generator<F>::Iterate(Position k)
 {
   if (k == 6){
     if (mAssembly.Oriented(mReflectTable)){
-      mFunction(mAssembly);
+      std::array<Piece, 6> pieces;
+      for (unsigned i{0}; i<6; ++i) pieces[i] = mPieces[mAssembly[i]];
+      mFunction(pieces);
     }
     return;
   }

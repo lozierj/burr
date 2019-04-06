@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cassert>
 
 #include "Position.h"
@@ -10,6 +12,8 @@ public:
   Partition(Type s) : mData{s} {assert(mData < max);}
 
   bool IsIn(Position p) const {return (1u << p) & mData;}
+  void operator++() {++mData;}
+  bool IsProper() const {return mData < max;}
 
 private:
   Type mData;

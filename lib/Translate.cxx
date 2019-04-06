@@ -37,3 +37,10 @@ Translate::Type operator*(const Translate& lhs, const Translate& rhs)
       lhs.GetRep().y*rhs.GetRep().y +
       lhs.GetRep().z*rhs.GetRep().z);
 }
+
+bool Translate::operator!=(const Translate& rhs) const
+{
+  return     mOffset.x != rhs.GetRep().x
+         ||  mOffset.y != rhs.GetRep().y
+         ||  mOffset.z != rhs.GetRep().z;
+}

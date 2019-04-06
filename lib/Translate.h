@@ -16,6 +16,7 @@ public:
   Coordinates Invert(const Coordinates&) const;
 
   void operator+=(const Translate&);
+  bool operator!=(const Translate&) const;
 
 private:
   Coordinates mOffset;

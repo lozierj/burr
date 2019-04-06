@@ -2,10 +2,11 @@
 
 #include "Test.h"
 #include "../lib/FitTable.h"
+#include "../lib/Notchables.h"
 
 void Test_FitTable()
 {
-  FitTable ft;
+  FitTable ft{Notchables()};
 
   test_equal(ft.GetSize(), 147);
 

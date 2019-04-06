@@ -1,21 +1,13 @@
 #include <iostream>
 
 #include "../lib/Generator.h"
+#include "../lib/Apart.h"
+#include "../lib/Notchables.h"
 
 int main()
 {
-  struct Counter{
-    Counter() : tot{0u} {}
-    void operator()(const Assembly&) {tot += 1u;}
-    unsigned tot;
-  };
+  Apart a;
 
-  FitTable ft(Notchables32());
-  ReflectTable rt(Notchables32());
-  Counter c;
-
-  Generator g(ft, rt, c);
+  Generator g(Notchables32(), a);
   g.Generate();
-
-  std::cout << c.tot << std::endl;
 }

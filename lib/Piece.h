@@ -8,6 +8,7 @@ class Piece{
 public:
   static Piece Notchable(unsigned short notches);
   Piece(const Piece&) = default;
+  Piece() : Piece(0) {};
 
   bool IsOccupied(Coordinates) const;
   bool IsConnected() const;

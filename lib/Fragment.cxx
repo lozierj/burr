@@ -55,3 +55,12 @@ bool Fragment::CheckFit(Partition p, const std::array<Piece, 6>& a) const
 
   return true;
 }
+
+bool Fragment::operator==(const Fragment& rhs) const
+{
+  for (Position i{0}; i < 5; ++i){
+    if (mDeltas[i] != rhs.mDeltas[i]) return false;
+  }
+
+  return true;
+}

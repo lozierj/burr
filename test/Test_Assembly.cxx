@@ -1,11 +1,12 @@
 #include "Test.h"
 #include "../lib/Assembly.h"
 #include "../lib/FitTable.h"
+#include "../lib/Notchables.h"
 
 void Test_Assembly()
 {
-  FitTable ft{};
-  ReflectTable rt{};
+  FitTable ft{Notchables()};
+  ReflectTable rt{Notchables()};
 
   Assembly a({3, 12, 110, 56, 59, 107});
   test_equal(a.Oriented(rt), true);

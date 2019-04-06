@@ -20,6 +20,7 @@ void Test_Position();
 void Test_Notchables();
 void Test_Partition();
 void Test_Fragment();
+void Test_Apart();
 //TODO: Translate
 //TODO: SpaceGroup
 
