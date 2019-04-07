@@ -33,8 +33,12 @@ void Apart::operator()(std::array<Piece, 6> pieces)
           if (!test.CheckFit(part, pieces)) break;
 
           if (test.CheckFree(part, dir)){
-            if (nodes[i].level > 5)
-              std::cout << nodes[i].level + 1 << std::endl;
+            if (nodes[i].level > 5){
+              std::cout << std::endl;
+              for (Piece p : pieces) std::cout << p << " ";
+              std::cout << std::endl;
+            }
+
             return;
           }
 
@@ -46,7 +50,5 @@ void Apart::operator()(std::array<Piece, 6> pieces)
       }
     }
   }
-
-  //std::cout << "N" << std::endl;
 
 }
