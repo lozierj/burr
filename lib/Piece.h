@@ -12,6 +12,8 @@ public:
 
   bool IsOccupied(Coordinates) const;
   bool IsConnected() const;
+  bool IsAmbiguous() const; //TODO: test
+  bool IsSubset(const Piece&) const; //TODO: test
 
 private:
   using Type = unsigned int;

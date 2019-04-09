@@ -1,6 +1,5 @@
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <array>
 
 #include "Apart.h"
@@ -8,7 +7,7 @@
 #include "Translate.h"
 #include "Partition.h"
 
-void Apart::operator()(std::array<Piece, 6> pieces)
+unsigned char Apart(std::array<Piece, 6> pieces)
 {
   struct Node{
     bool operator==(const Fragment& f) const {return frag == f;}
@@ -33,22 +32,17 @@ void Apart::operator()(std::array<Piece, 6> pieces)
           if (!test.CheckFit(part, pieces)) break;
 
           if (test.CheckFree(part, dir)){
-            if (nodes[i].level > 5){
-              std::cout << std::endl;
-              for (Piece p : pieces) std::cout << p << " ";
-              std::cout << std::endl;
-            }
-
-            return;
+            return static_cast<unsigned char>(nodes[i].level + 1u);
           }
 
           if (std::find(nodes.begin(), nodes.end(), test) == nodes.end()){
             nodes.push_back({test,
-                             static_cast<unsigned char>(nodes[i].level + 1u)});
+                 static_cast<unsigned char>(nodes[i].level + 1u)});
           }
         } while (true);
       }
     }
   }
 
+  return 0;
 }

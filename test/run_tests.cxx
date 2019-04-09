@@ -20,6 +20,7 @@ int main()
     Test_Partition();
     Test_Fragment();
     Test_Apart();
+    Test_Subset();
 
     std::cout << "All tests completed." << std::endl;
     return 0;

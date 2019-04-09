@@ -1,20 +1,21 @@
 #include <iostream>
 
-template<typename F>
-void Generator<F>::Generate()
+#include "Apart.h"
+#include "Generator.h"
+
+void Generator::Generate()
 {
   Iterate(0);
   std::cerr << std::endl;
 }
 
-template<typename F>
-void Generator<F>::Iterate(Position k)
+void Generator::Iterate(Position k)
 {
   if (k == 6){
     if (mAssembly.Oriented(mReflectTable)){
       std::array<Piece, 6> pieces;
       for (unsigned i{0}; i<6; ++i) pieces[i] = mPieces[mAssembly[i]];
-      mFunction(pieces);
+      std::cout << static_cast<int>(Apart(pieces));
     }
     return;
   }

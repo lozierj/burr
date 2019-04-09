@@ -1,6 +1,5 @@
-#include "Assembly.h"
+#include <array>
 
-class Apart{
-public:
-  void operator()(std::array<Piece, 6>);
-};
+#include "Piece.h"
+
+unsigned char Apart(std::array<Piece, 6>);

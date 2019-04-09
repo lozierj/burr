@@ -59,6 +59,17 @@ bool Piece::IsConnected() const
   return true;
 }
 
+bool Piece::IsAmbiguous() const
+{
+  return IsOccupied({1, -1, -3}) && IsOccupied({1, 1, -3})
+      && IsOccupied({1, -1,  3}) && IsOccupied({1, 1,  3});
+}
+
+bool Piece::IsSubset(const Piece& rhs) const
+{
+  return (!(~(rhs.mData) & mData));
+}
+
 std::ostream& operator<<(std::ostream& os, const Piece& p)
 {
   for (Coordinates::Type z{-5}; z < 6; z += 2) {
