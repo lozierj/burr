@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cassert>
 #include <stdexcept>
 
@@ -30,6 +31,12 @@ bool Assembly::Oriented(const ReflectTable& rt, bool proper) const
   return true;
 }
 
+void Assembly::ToSetForm(const EquivTable& et)
+{
+  for (Index& i : mData) i = et(i);
+  std::sort(mData.begin(), mData.end());
+}
+
 const Index& Assembly::operator[](Position p) const
 {
   assert(p < 6);
@@ -52,22 +59,30 @@ Assembly Assembly::Orient(const ReflectTable& rt, PointGroup pg) const
   Assembly ret = *this;
 
   Reflect::Type ref{pg.GetReflect().GetRep()};
-  Reflect y(2);
-  Reflect z(4);
+  Reflect yz(6);
 
   if (ref & 1u){
-    Index temp{ret[0]}; ret[0] = ret[3]; ret[3] = temp;
-    ret[0] = rt(ret[0], y); ret[1] = rt(ret[1], z); ret[2] = rt(ret[2], y);
-    ret[3] = rt(ret[3], y); ret[4] = rt(ret[4], z); ret[5] = rt(ret[5], y);
+    ref ^= 3u;
+    Index tempa{ret[0]}; ret[0] = ret[3]; ret[3] = tempa;
+    Index tempb{ret[1]}; ret[1] = ret[4]; ret[4] = tempb;
+    ret[1] = rt(ret[1], yz); ret[2] = rt(ret[2], yz);
+    ret[4] = rt(ret[4], yz); ret[5] = rt(ret[5], yz);
   }
 
   if (ref & 2u){
-    Index temp{ret[1]}; ret[1] = ret[4]; ret[4] = temp;
-    ret[0] = rt(ret[0], y); ret[1] = rt(ret[1], y); ret[2] = rt(ret[2], z);
-    ret[3] = rt(ret[3], y); ret[4] = rt(ret[4], y); ret[5] = rt(ret[5], z);
+    ref ^= 6u;
+    Index tempa{ret[1]}; ret[1] = ret[4]; ret[4] = tempa;
+    Index tempb{ret[2]}; ret[2] = ret[5]; ret[5] = tempb;
+    ret[0] = rt(ret[0], yz); ret[2] = rt(ret[2], yz);
+    ret[3] = rt(ret[3], yz); ret[5] = rt(ret[5], yz);
   }
 
-  if (ref & 4u){
+  if (ref){
+    assert(ref == 4u);
+
+    Reflect y(2);
+    Reflect z(4);
+
     Index temp{ret[2]}; ret[2] = ret[5]; ret[5] = temp;
     ret[0] = rt(ret[0], z); ret[1] = rt(ret[1], y); ret[2] = rt(ret[2], y);
     ret[3] = rt(ret[3], z); ret[4] = rt(ret[4], y); ret[5] = rt(ret[5], y);
@@ -94,4 +109,10 @@ bool Assembly::IsBefore(const Assembly& comp) const
   }
 
   return false;
+}
+
+std::ostream& operator<<(std::ostream& os, const Assembly& a)
+{
+  for (Index i : a.mData) os << static_cast<int>(i) << " ";
+  return os;
 }

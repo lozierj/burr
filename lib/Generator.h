@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "Assembly.h"
+#include "EquivTable.h"
 #include "FitTable.h"
 #include "Position.h"
 #include "ReflectTable.h"
@@ -9,7 +10,7 @@
 class Generator{
 public:
   Generator(const std::vector<Piece>& pcs)
-      : mPieces{pcs}, mFitTable{pcs}, mReflectTable{pcs} {}
+      : mPieces{pcs}, mFitTable{pcs}, mReflectTable{pcs}, mEquivTable{pcs} {}
 
   void Generate();
 
@@ -19,5 +20,6 @@ private:
   const std::vector<Piece> mPieces;
   const FitTable mFitTable;
   const ReflectTable mReflectTable;
+  const EquivTable mEquivTable;
   Assembly mAssembly;
 };

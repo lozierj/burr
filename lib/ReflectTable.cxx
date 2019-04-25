@@ -20,12 +20,15 @@ ReflectTable::ReflectTable(const std::vector<Piece>& vec)
       }
     }
 
-    assert(mTable[r.GetRep()].size() == n);
   }
+  assert(mTable[0u].size() == n);
+  assert(mTable[6u].size() == n);
+  if (mTable[2u].size() != n) mTable[2u].clear();
+  if (mTable[4u].size() != n) mTable[4u].clear();
 }
 
 Index ReflectTable::operator()(Index i, Reflect r) const
 {
-  assert(i < mTable[0].size());
+  assert(i < mTable[r.GetRep()].size());
   return mTable[r.GetRep()][i];
 }

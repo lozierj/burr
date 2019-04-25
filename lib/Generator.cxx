@@ -15,7 +15,11 @@ void Generator::Iterate(Position k)
     if (mAssembly.Oriented(mReflectTable)){
       std::array<Piece, 6> pieces;
       for (unsigned i{0}; i<6; ++i) pieces[i] = mPieces[mAssembly[i]];
-      std::cout << static_cast<int>(Apart(pieces));
+      Assembly s{mAssembly};
+      s.ToSetForm(mEquivTable);
+      std::cout << s << "    " << static_cast<int>(Apart(pieces)) << "   ";
+      for (Piece p : pieces) std::cout << " " << p;
+      std::cout << std::endl;
     }
     return;
   }

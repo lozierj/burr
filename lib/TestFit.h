@@ -6,4 +6,4 @@
 
 bool TestFit(Piece, Position,
     Piece, Position,
-    Translate offset = Translate({0, 0, 0}));
+    Translate offset = Translate(0, 0, 0));

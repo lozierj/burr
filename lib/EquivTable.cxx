@@ -12,16 +12,16 @@ EquivTable::EquivTable(const std::vector<Piece>& vec)
   mTable.reserve(n);
 
   for (Index i{0}; i < n; ++i){
-    if (vec[i].IsAmbiguous()) throw std::logic_error("TODO: not implemented");
+    //if (vec[i].IsAmbiguous()) throw std::logic_error("TODO: not implemented");
     for (Index j{0}; j < n; ++j){
       if (TestReflect(vec[i], vec[j], Reflect(6u))){
         mTable.push_back(std::min(i, j));
         break;
       }
     }
-
-    assert(mTable.size() == n);
   }
+
+  if (mTable.size() != n) throw std::logic_error("eqiv table not built");
 }
 
 Index EquivTable::operator()(Index i) const

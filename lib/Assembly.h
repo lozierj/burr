@@ -5,6 +5,7 @@
 #include "Index.h"
 #include "FitTable.h"
 #include "ReflectTable.h"
+#include "EquivTable.h"
 #include "PointGroup.h"
 #include "Position.h"
 
@@ -16,8 +17,12 @@ public:
   bool Fits(const FitTable&, Position) const;
   bool Oriented(const ReflectTable&, bool proper = true) const;
 
+  void ToSetForm(const EquivTable&);
+
   const Index& operator[](Position p) const;
   Index& operator[](Position p);
+
+  friend std::ostream& operator<<(std::ostream&, const Assembly&);
 
 private:
   bool Fits(const FitTable&, Position, Position) const;
@@ -26,3 +31,5 @@ private:
 
   std::array<Index, 6> mData;
 };
+
+std::ostream& operator<<(std::ostream&, const Assembly&);

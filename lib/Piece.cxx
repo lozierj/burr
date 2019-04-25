@@ -91,7 +91,7 @@ std::ostream& operator<<(std::ostream& os, const Piece& p)
       case  7: os << "?"; break;
       case  8: os << "W"; break;
       case  9: os << "?"; break;
-      case 10: os << "V"; break;
+      case 10: os << "v"; break;
       case 11: os << "?"; break;
       case 12: os << "|"; break;
       case 13: os << "?"; break;
