@@ -1,4 +1,5 @@
 #include <array>
+#include <exception>
 
 #include "Coordinates.h"
 #include "TestReflect.h"
@@ -19,4 +20,13 @@ bool TestReflect(Piece a, Piece b, Reflect r)
   }
 
   return true;
+}
+
+Piece FindReflect(Piece p, Reflect r, const std::vector<Piece>& list)
+{
+  for (Piece q : list){
+    if (TestReflect(p, q, r)) return q;
+  }
+
+  throw std::logic_error("reflection not found");
 }

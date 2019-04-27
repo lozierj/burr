@@ -9,6 +9,7 @@
 #include "CompleteSquare.h"
 #include "Piece.h"
 #include "TestFit.h"
+#include "Permutor.h"
 
 void CompleteSquare()
 {
@@ -68,16 +69,22 @@ void CompleteSquare()
                abi == data.end()
           //&& bai != data.end()
             && TestFit(ab)
-            && Apart(ab) == 5){
+            && Apart(ab) == 5
+            && Permutor(ab) <= 2
+            ){
           for (Piece p : ab) std::cout << " " << p;
           std::cout << std::endl;
+          Permutor(ab);
         } else if (
                bai == data.end()
           //&& abi != data.end()
             && TestFit(ba)
-            && Apart(ba) == 5){
+            && Apart(ba) == 5
+            && Permutor(ba) <= 2
+            ){
           for (Piece p : ba) std::cout << " " << p;
           std::cout << std::endl;
+          Permutor(ba);
         }
       }
     }

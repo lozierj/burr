@@ -10,4 +10,5 @@ bool TestFit(Piece, Position,
     Piece, Position,
     Translate offset = Translate(0, 0, 0));
 
+bool TestFit(const std::array<Piece, 6>&, unsigned i);
 bool TestFit(const std::array<Piece, 6>&);

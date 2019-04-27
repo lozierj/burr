@@ -42,12 +42,19 @@ bool TestFit(Piece a, Position ap, Piece b, Position bp, Translate offset)
   return true;
 }
 
+bool TestFit(const std::array<Piece, 6>& a, unsigned i)
+{
+  for (unsigned j{0}; j < i; ++j){
+    if (!TestFit(a[i], i, a[j], j)) return false;
+  }
+
+  return true;
+}
+
 bool TestFit(const std::array<Piece, 6>& a)
 {
   for (unsigned i{1}; i < 6; ++i){
-    for (unsigned j{0}; j < i; ++j){
-      if (!TestFit(a[i], i, a[j], j)) return false;
-    }
+    if (!TestFit(a, i)) return false;
   }
 
   return true;

@@ -4,26 +4,24 @@
 #include <stdexcept>
 #include <string>
 
-void Test_Piece();
-void Test_Coordinates();
-void Test_Rotate();
-void Test_Reflect();
-void Test_PointGroup();
-void Test_TestFit();
-void Test_FitTable();
-void Test_TestReflect();
-void Test_ReflectTable();
+void Test_Apart();
 void Test_Assembly();
+void Test_Coordinates();
+void Test_FitTable();
+void Test_Fragment();
 void Test_Generator();
 void Test_Index();
-void Test_Position();
 void Test_Notchables();
 void Test_Partition();
-void Test_Fragment();
-void Test_Apart();
+void Test_Piece();
+void Test_PointGroup();
+void Test_Position();
+void Test_Reflect();
+void Test_ReflectTable();
+void Test_Rotate();
 void Test_Subset();
-//TODO: Translate
-//TODO: SpaceGroup
+void Test_TestFit();
+void Test_TestReflect();
 
 template<typename T, typename U>
 void test_equal(T t, U u, std::string msg = "failed equality")
