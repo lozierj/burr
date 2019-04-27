@@ -70,6 +70,11 @@ bool Piece::IsSubset(const Piece& rhs) const
   return (!(~(rhs.mData) & mData));
 }
 
+bool Piece::operator==(const Piece& rhs) const
+{
+  return (rhs.mData == mData);
+}
+
 std::ostream& operator<<(std::ostream& os, const Piece& p)
 {
   for (Coordinates::Type z{-5}; z < 6; z += 2) {

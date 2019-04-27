@@ -14,6 +14,7 @@ public:
   bool IsConnected() const;
   bool IsAmbiguous() const; //TODO: test
   bool IsSubset(const Piece&) const; //TODO: test
+  bool operator==(const Piece&) const;
 
 private:
   using Type = unsigned int;
