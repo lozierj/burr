@@ -13,6 +13,7 @@ int main()
     Test_Fragment();
     Test_Generator();
     Test_Notchables();
+    Test_OffsetTable();
     Test_Partition();
     Test_Piece();
     Test_PointGroup();

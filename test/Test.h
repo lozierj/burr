@@ -12,6 +12,7 @@ void Test_Fragment();
 void Test_Generator();
 void Test_Index();
 void Test_Notchables();
+void Test_OffsetTable();
 void Test_Partition();
 void Test_Piece();
 void Test_PointGroup();

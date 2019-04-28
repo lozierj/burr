@@ -1,8 +1,13 @@
 #include <iostream>
 
-#include "../lib/CompleteSquare.h"
+#include "../lib/Generator.h"
+#include "../lib/Notchables.h"
+
+#include "../lib/Translate.h"
+#include "../lib/TestFit.h"
 
 int main()
 {
-  CompleteSquare();
+  Generator g{Notchables32()};
+  g.Generate();
 }

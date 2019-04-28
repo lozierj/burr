@@ -17,9 +17,13 @@ void Generator::Iterate(Position k)
       for (unsigned i{0}; i<6; ++i) pieces[i] = mPieces[mAssembly[i]];
       Assembly s{mAssembly};
       s.ToSetForm(mEquivTable);
-      std::cout << s << "    " << static_cast<int>(Apart(pieces)) << "   ";
-      for (Piece p : pieces) std::cout << " " << p;
-      std::cout << std::endl;
+      int level{Apart(pieces)};
+
+      if (level == 7){
+        std::cout << s << "\t L" << level << "\t";
+        for (Piece p : pieces) std::cout << " " << p;
+        std::cout << std::endl;
+      }
     }
     return;
   }

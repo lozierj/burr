@@ -23,6 +23,20 @@ void Translate::operator+=(const Translate& rhs)
   mOffset.z += rhs.GetRep().z;
 }
 
+bool Translate::operator!=(const Translate& rhs) const
+{
+  return     mOffset.x != rhs.GetRep().x
+         ||  mOffset.y != rhs.GetRep().y
+         ||  mOffset.z != rhs.GetRep().z;
+}
+
+Translate Translate::operator-() const
+{
+  return {-mOffset.x, -mOffset.y, -mOffset.z};
+}
+
+//----
+
 Translate operator-(const Translate& lhs, const Translate& rhs)
 {
   return {static_cast<Translate::Type>(lhs.GetRep().x - rhs.GetRep().x),
@@ -36,11 +50,4 @@ Translate::Type operator*(const Translate& lhs, const Translate& rhs)
       lhs.GetRep().x*rhs.GetRep().x +
       lhs.GetRep().y*rhs.GetRep().y +
       lhs.GetRep().z*rhs.GetRep().z);
-}
-
-bool Translate::operator!=(const Translate& rhs) const
-{
-  return     mOffset.x != rhs.GetRep().x
-         ||  mOffset.y != rhs.GetRep().y
-         ||  mOffset.z != rhs.GetRep().z;
 }

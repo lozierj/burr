@@ -17,6 +17,7 @@ public:
 
   void operator+=(const Translate&);
   bool operator!=(const Translate&) const;
+  Translate operator-() const;
 
 private:
   Coordinates mOffset;
