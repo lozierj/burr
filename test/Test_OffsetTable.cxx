@@ -13,6 +13,7 @@ void Test_OffsetTable()
 
   ReflectTable rt{v};
   OffsetTable ot{v, rt};
+  int i{0};
 
   for (Index ai{0}; ai < v.size(); ++ai){
     for (Index bi{0}; bi < v.size(); ++bi){
@@ -21,7 +22,7 @@ void Test_OffsetTable()
           for (Translate::Type x{-12}; x <= 12; x += 2){
             for (Translate::Type y{-12}; y <= 12; y += 2){
               for (Translate::Type z{-12}; z <= 12; z += 2){
-                if (ap != bp){
+                if (ap != bp && !(++i % 143)){
                   bool corr{TestFit(v[ai], ap, v[bi], bp, {x, y, z})};
                   bool table{ot(ai, ap, bi, bp, {x, y, z})};
                   test_equal(corr, table);

@@ -1,34 +1,35 @@
+#include <algorithm>
+#include <stdexcept>
 #include <fstream>
+#include <vector>
 
 #include "Test.h"
 #include "../lib/Apart.h"
+#include "../lib/Piece.h"
+#include "../lib/Notchables.h"
+#include "../lib/OffsetTable.h"
+#include "../lib/ReflectTable.h"
 
 void Test_Apart()
 {
+  const std::vector<Piece> pieces{Notchables()};
+  const ReflectTable rt{pieces};
+  const OffsetTable ot{pieces, rt};
+
   std::ifstream s("data/ip2.tsv");
   s >> std::hex;
 
-  using Pieces = std::array<Piece, 6>;
-
   for(int line{1}; line <= 164; ++line){
-   Pieces v;
+   Assembly a;
 
     for (unsigned i{0}; i < 6; ++i){
       unsigned short n;
       s >> n;
-      v[i] = Piece::Notchable(n);
+      auto it = std::find(pieces.begin(), pieces.end(), Piece::Notchable(n));
+      if (it == pieces.end()) throw std::logic_error("piece not in set");
+      a[i] = it - pieces.begin();
     }
 
-    test_equal(Apart(v), 5);
+    test_equal(Apart(a, ot), 5);
   }
-
-  std::array<Piece, 6> p{
-    Piece::Notchable(0xCFu),
-    Piece::Notchable(0x87u),
-    Piece::Notchable(0x4bu),
-    Piece::Notchable(0x3Du),
-    Piece::Notchable(0xC9u),
-    Piece::Notchable(0x49u)};
-
-  test_equal(Apart(p), 5);
 }

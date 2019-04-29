@@ -32,7 +32,9 @@ bool Translate::operator!=(const Translate& rhs) const
 
 Translate Translate::operator-() const
 {
-  return {-mOffset.x, -mOffset.y, -mOffset.z};
+  return {static_cast<Translate::Type>(-mOffset.x),
+          static_cast<Translate::Type>(-mOffset.y),
+          static_cast<Translate::Type>(-mOffset.z)};
 }
 
 //----

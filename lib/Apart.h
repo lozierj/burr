@@ -1,5 +1,6 @@
 #include <array>
 
-#include "Piece.h"
+#include "OffsetTable.h"
+#include "Assembly.h"
 
-unsigned char Apart(std::array<Piece, 6>);
+unsigned char Apart(Assembly, const OffsetTable&);

@@ -7,7 +7,7 @@
 #include "Translate.h"
 #include "Partition.h"
 
-unsigned char Apart(std::array<Piece, 6> pieces)
+unsigned char Apart(Assembly assm, const OffsetTable& ot)
 {
   struct Node{
     bool operator==(const Fragment& f) const {return frag == f;}
@@ -29,7 +29,7 @@ unsigned char Apart(std::array<Piece, 6> pieces)
         Fragment test{nodes[i].frag};
         do{
           test.Shift(part, dir);
-          if (!test.CheckFit(part, pieces)) break;
+          if (!test.CheckFit(part, assm, ot)) break;
 
           if (test.CheckFree(part, dir)){
             return static_cast<unsigned char>(nodes[i].level + 1u);

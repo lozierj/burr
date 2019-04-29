@@ -1,7 +1,8 @@
 #include <array>
 
+#include "Assembly.h"
 #include "Translate.h"
-#include "Piece.h"
+#include "OffsetTable.h"
 #include "Partition.h"
 
 class Fragment{
@@ -9,7 +10,7 @@ public:
   void Shift(Partition, Translate);
 
   bool CheckFree(Partition, Translate) const;
-  bool CheckFit(Partition, const std::array<Piece, 6>&) const;
+  bool CheckFit(Partition, Assembly, const OffsetTable&) const;
   bool operator==(const Fragment&) const;
 
 private:

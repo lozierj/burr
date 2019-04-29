@@ -33,14 +33,14 @@ bool Fragment::CheckFree(Partition p, Translate t) const
   return true;
 }
 
-bool Fragment::CheckFit(Partition p, const std::array<Piece, 6>& a) const
+bool Fragment::CheckFit(Partition p, Assembly a, const OffsetTable& ot) const
 {
   for (Position i{0}; i < 5; ++i){
     if (p.IsIn(i)) continue;
 
     for (Position j{0}; j < 5; ++j){
       if (    p.IsIn(j)
-           && !TestFit(a[i], i, a[j], j, mDeltas[j] - mDeltas[i])){
+           && !ot(a[i], i, a[j], j, mDeltas[j] - mDeltas[i])){
         return false;
       }
     }
@@ -48,7 +48,7 @@ bool Fragment::CheckFit(Partition p, const std::array<Piece, 6>& a) const
 
   for (Position j{0}; j < 5; ++j){
     if (    p.IsIn(j)
-         && !TestFit(a[5], 5, a[j], j, mDeltas[j])){
+         && !ot(a[5], 5, a[j], j, mDeltas[j])){
       return false;
     }
   }
