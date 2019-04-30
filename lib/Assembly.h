@@ -22,12 +22,13 @@ public:
   const Index& operator[](Position p) const;
   Index& operator[](Position p);
 
+  bool operator<(const Assembly&) const;
+
   friend std::ostream& operator<<(std::ostream&, const Assembly&);
 
 private:
   bool Fits(const FitTable&, Position, Position) const;
   Assembly Orient(const ReflectTable&, PointGroup) const;
-  bool IsBefore(const Assembly&) const;
 
   std::array<Index, 6> mData;
 };

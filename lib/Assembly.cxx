@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cassert>
 #include <stdexcept>
+#include <iomanip>
 
 #include "Assembly.h"
 
@@ -24,7 +25,7 @@ bool Assembly::Oriented(const ReflectTable& rt, bool proper) const
   for (Reflect::Type ref{0}; ref < 8; ++ref){
     for (Rotate::Type rot{0}; rot < 3; ++rot){
       if (!(Reflect(ref).IsProper()) && proper) continue;
-      if (IsBefore(Orient(rt, {ref, rot}))) return false;
+      if (Orient(rt, {ref, rot}) < *this) return false;
     }
   }
 
@@ -48,6 +49,18 @@ Index& Assembly::operator[](Position p)
   assert(p < 6);
   return mData[p];
 }
+
+bool Assembly::operator<(const Assembly& comp) const
+{
+  for (unsigned i{0}; i < 6; ++i){
+    if (mData[i] < comp.mData[i]) return true;
+    if (mData[i] > comp.mData[i]) return false;
+  }
+
+  return false;
+}
+
+//----
 
 bool Assembly::Fits(const FitTable& ft, Position p, Position q) const
 {
@@ -101,18 +114,11 @@ Assembly Assembly::Orient(const ReflectTable& rt, PointGroup pg) const
   return ret;
 }
 
-bool Assembly::IsBefore(const Assembly& comp) const
-{
-  for (unsigned i{0}; i < 6; ++i){
-    if (comp.mData[i] < mData[i]) return true;
-    if (comp.mData[i] > mData[i]) return false;
-  }
-
-  return false;
-}
-
 std::ostream& operator<<(std::ostream& os, const Assembly& a)
 {
-  for (Index i : a.mData) os << static_cast<int>(i) << " ";
+  for (Index i : a.mData){
+    os << std::setw(4);
+    os << static_cast<int>(i);
+  }
   return os;
 }

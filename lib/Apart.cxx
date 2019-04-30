@@ -7,13 +7,13 @@
 #include "Translate.h"
 #include "Partition.h"
 
-unsigned char Apart(Assembly assm, const OffsetTable& ot)
+Level Apart(Assembly assm, const OffsetTable& ot)
 {
   struct Node{
     bool operator==(const Fragment& f) const {return frag == f;}
 
     Fragment frag;
-    unsigned char level;
+    Level level;
   };
 
   std::vector<Node> nodes;
@@ -32,12 +32,12 @@ unsigned char Apart(Assembly assm, const OffsetTable& ot)
           if (!test.CheckFit(part, assm, ot)) break;
 
           if (test.CheckFree(part, dir)){
-            return static_cast<unsigned char>(nodes[i].level + 1u);
+            return static_cast<Level>(nodes[i].level + 1u);
           }
 
           if (std::find(nodes.begin(), nodes.end(), test) == nodes.end()){
             nodes.push_back({test,
-                 static_cast<unsigned char>(nodes[i].level + 1u)});
+                 static_cast<Level>(nodes[i].level + 1u)});
           }
         } while (true);
       }

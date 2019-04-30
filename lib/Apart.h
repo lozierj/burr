@@ -3,4 +3,6 @@
 #include "OffsetTable.h"
 #include "Assembly.h"
 
-unsigned char Apart(Assembly, const OffsetTable&);
+using Level = unsigned char;
+
+Level Apart(Assembly, const OffsetTable&);

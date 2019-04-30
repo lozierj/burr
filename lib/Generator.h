@@ -6,6 +6,7 @@
 #include "OffsetTable.h"
 #include "Position.h"
 #include "ReflectTable.h"
+#include "SolutionMap.h"
 
 class Generator{
 public:
@@ -14,7 +15,8 @@ public:
     mFitTable{pcs},
     mReflectTable{pcs},
     mEquivTable{pcs},
-    mOffsetTable{pcs, mReflectTable}
+    mOffsetTable{pcs, mReflectTable},
+    mMap{mEquivTable, mOffsetTable}
   {}
 
   void Generate();
@@ -27,5 +29,6 @@ private:
   const ReflectTable mReflectTable;
   const EquivTable mEquivTable;
   const OffsetTable mOffsetTable;
+  SolutionMap mMap;
   Assembly mAssembly;
 };
