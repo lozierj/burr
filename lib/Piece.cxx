@@ -75,6 +75,16 @@ bool Piece::operator==(const Piece& rhs) const
   return (rhs.mData == mData);
 }
 
+Piece Piece::Twist() const
+{
+  Type ret{0};
+  ret |= (mData & 0x3F) << 8;
+  ret |= (mData & 0x3F00) << 16;
+  ret |= (mData & 0x3F0000) >> 16;
+  ret |= (mData & 0x3F000000) >> 8;
+  return Piece{ret};
+}
+
 std::ostream& operator<<(std::ostream& os, const Piece& p)
 {
   for (Coordinates::Type z{-5}; z < 6; z += 2) {

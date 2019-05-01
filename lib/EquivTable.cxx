@@ -12,13 +12,30 @@ EquivTable::EquivTable(const std::vector<Piece>& vec)
   mTable.reserve(n);
 
   for (Index i{0}; i < n; ++i){
-    //if (vec[i].IsAmbiguous()) throw std::logic_error("TODO: not implemented");
+    std::vector<Piece> equivs;
+    equivs.push_back(vec[i]);
+
+    if (vec[i].IsAmbiguous()){
+      equivs.push_back(vec[i].Twist());
+      equivs.push_back(vec[i].Twist().Twist());
+      equivs.push_back(vec[i].Twist().Twist().Twist());
+    }
+
+    Index lowest{i};
+
     for (Index j{0}; j < n; ++j){
-      if (TestReflect(vec[i], vec[j], Reflect(6u))){
-        mTable.push_back(std::min(i, j));
-        break;
+      for (Piece equiv : equivs){
+        if (equiv == vec[j]){
+          lowest = std::min(lowest, j);
+        }
+
+        if (TestReflect(equiv, vec[j], Reflect(6u))){
+          lowest = std::min(lowest, j);
+        }
       }
     }
+
+    mTable.push_back(lowest);
   }
 
   if (mTable.size() != n) throw std::logic_error("eqiv table not built");

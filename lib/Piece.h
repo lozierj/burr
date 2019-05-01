@@ -16,6 +16,8 @@ public:
   bool IsSubset(const Piece&) const; //TODO: test
   bool operator==(const Piece&) const;
 
+  Piece Twist() const;
+
 private:
   using Type = unsigned int;
 
