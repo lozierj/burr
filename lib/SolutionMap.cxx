@@ -1,6 +1,8 @@
 #include <iostream>
+#include <iomanip>
 
 #include "SolutionMap.h"
+#include "Permutor.h"
 
 void SolutionMap::Add(const Assembly& a)
 {
@@ -27,9 +29,11 @@ void SolutionMap::Print(const std::vector<Piece>& vec) const
 {
   for (auto& entry : mMap){
     if (entry.second > 4){
-      std::cout << entry.first << "   L" << (int)(entry.second) << " ";
-      for (Position i{0}; i < 6; ++i) std::cout << "  " << vec[entry.first[i]];
-      std::cout << std::endl;
+      Permutor perm{entry.first, vec};
+      std::cout << entry.first
+                << "  " << std::setw(3) << (int)(entry.second) << "L"
+                << "  " << std::setw(3) << perm.Count() << "A"
+                << std::endl;
     }
   }
 }
