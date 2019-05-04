@@ -17,6 +17,7 @@ public:
   bool operator==(const Piece&) const;
 
   Piece Twist() const;
+  int Holes() const;
 
 private:
   using Type = unsigned int;

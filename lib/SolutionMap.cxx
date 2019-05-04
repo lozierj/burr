@@ -32,6 +32,7 @@ void SolutionMap::Print(const std::vector<Piece>& vec) const
       Permutor perm{entry.first, vec};
       std::cout << entry.first
                 << "  " << std::setw(3) << (int)(entry.second) << "L"
+                << "  " << std::setw(3) << entry.first.Holes(vec) << "H"
                 << "  " << std::setw(3) << perm.Count() << "A"
                 << std::endl;
     }

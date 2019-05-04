@@ -24,6 +24,8 @@ public:
 
   bool operator<(const Assembly&) const;
 
+  int Holes(const std::vector<Piece>&) const;
+
   friend std::ostream& operator<<(std::ostream&, const Assembly&);
 
 private:

@@ -85,6 +85,21 @@ Piece Piece::Twist() const
   return Piece{ret};
 }
 
+int Piece::Holes() const
+{
+  int holes{0};
+
+  for (Coordinates::Type x{1}; x < 4; x += 2){
+    for (Coordinates::Type y{-1}; y < 2; y += 2){
+      for (Coordinates::Type z{-5}; z < 6; z += 2){
+        if (!IsOccupied({x, y, z})) ++holes;
+      }
+    }
+  }
+
+  return holes;
+}
+
 std::ostream& operator<<(std::ostream& os, const Piece& p)
 {
   for (Coordinates::Type z{-5}; z < 6; z += 2) {

@@ -60,6 +60,13 @@ bool Assembly::operator<(const Assembly& comp) const
   return false;
 }
 
+int Assembly::Holes(const std::vector<Piece>& vec) const
+{
+  int holes{-40};
+  for (Index i : mData) holes += vec[i].Holes();
+  return holes;
+}
+
 //----
 
 bool Assembly::Fits(const FitTable& ft, Position p, Position q) const
