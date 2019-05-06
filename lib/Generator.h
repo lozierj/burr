@@ -16,7 +16,7 @@ public:
     mReflectTable{pcs},
     mEquivTable{pcs},
     mOffsetTable{pcs, mReflectTable},
-    mMap{mEquivTable, mOffsetTable}
+    mMap{mEquivTable, mOffsetTable, mReflectTable}
   {}
 
   void Generate();

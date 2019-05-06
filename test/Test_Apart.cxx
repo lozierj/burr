@@ -30,6 +30,6 @@ void Test_Apart()
       a[i] = it - pieces.begin();
     }
 
-    test_equal(Apart(a, ot), 5);
+    test_equal(Apart(a, ot, rt), 5);
   }
 }

@@ -13,7 +13,7 @@ void Permutor::Print()
 {
   for (Assembly a : mSet){
     for (Position p{0}; p < 6; ++p) std::cout << mPieces[a[p]] << " ";
-    std::cout << " L" << (int)Apart(a, mOffset) << std::endl;
+    std::cout << " L" << (int)Apart(a, mOffset, mReflect) << std::endl;
   }
 }
 

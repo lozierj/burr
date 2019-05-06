@@ -9,8 +9,9 @@
 
 class SolutionMap{
 public:
-  SolutionMap(const EquivTable& et, const OffsetTable& ot)
-    : mMap{}, mEquiv{et}, mOffset{ot} {}
+  SolutionMap(const EquivTable& et, const OffsetTable& ot,
+              const ReflectTable& rt)
+    : mMap{}, mEquiv{et}, mOffset{ot}, mReflect{rt} {}
 
   void Add(const Assembly& a);
   void Print(const std::vector<Piece>&) const;
@@ -20,4 +21,5 @@ private:
   Map mMap;
   const EquivTable& mEquiv;
   const OffsetTable& mOffset;
+  const ReflectTable& mReflect;
 };

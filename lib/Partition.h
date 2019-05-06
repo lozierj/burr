@@ -7,13 +7,20 @@
 class Partition{
 public:
   using Type = unsigned char;
-  static constexpr Type max = 1u << 5;
 
-  Partition(Type s) : mData{s} {assert(mData < max);}
+  Partition(Type s) : mData{s} {assert(mData < (1u << 6));}
 
-  bool IsIn(Position p) const {return (1u << p) & mData;}
+  bool IsIn(Position p) const;
+  bool ThreeAxes() const;
+  bool IsSubset(Partition) const;
+  Partition Complement(Partition) const;
+
+  void RotateXZ();
   void operator++() {++mData;}
-  bool IsProper() const {return mData < max;}
+
+  static Partition All() {return 077u;}
+
+  Type Get() const {return mData;}
 
 private:
   Type mData;

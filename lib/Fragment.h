@@ -9,8 +9,11 @@ class Fragment{
 public:
   void Shift(Partition, Translate);
 
-  bool CheckFree(Partition, Translate) const;
-  bool CheckFit(Partition, Assembly, const OffsetTable&) const;
+  bool CheckFree(Partition move, Partition stat, Translate) const;
+  bool CheckFree(Partition move, Translate) const;
+  bool CheckFit(Partition move, Partition stat,
+                Assembly, const OffsetTable&) const;
+  bool CheckFit(Partition move, Assembly, const OffsetTable&) const;
   bool operator==(const Fragment&) const;
 
 private:

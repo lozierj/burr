@@ -1,13 +1,14 @@
-#include <vector>
 #include <algorithm>
 #include <array>
+#include <cassert>
+#include <vector>
 
 #include "Apart.h"
 #include "Fragment.h"
 #include "Translate.h"
-#include "Partition.h"
 
-Level Apart(Assembly assm, const OffsetTable& ot)
+Level Apart(Assembly assm, const OffsetTable& ot, const ReflectTable& rt,
+            Partition set)
 {
   struct Node{
     bool operator==(const Fragment& f) const {return frag == f;}
@@ -15,6 +16,14 @@ Level Apart(Assembly assm, const OffsetTable& ot)
     Fragment frag;
     Level level;
   };
+
+  if (!set.ThreeAxes()) return 1;
+
+  if (!set.IsIn(5)){
+    set.RotateXZ();
+    assm = assm.Orient(rt, {5u, 0u});
+    assert(set.IsIn(5));
+  }
 
   std::vector<Node> nodes;
   Fragment root;
@@ -25,13 +34,19 @@ Level Apart(Assembly assm, const OffsetTable& ot)
 
   for (unsigned i{0}; i < nodes.size(); ++i){
     for (const Translate dir : directions){
-      for (Partition part{1}; part.IsProper(); ++part){
+      for (Partition move{1u}; !move.IsIn(5); ++move){
+
+        if (!move.IsSubset(set)) continue;
+        Partition stat = move.Complement(set);
+
         Fragment test{nodes[i].frag};
         do{
-          test.Shift(part, dir);
-          if (!test.CheckFit(part, assm, ot)) break;
+          test.Shift(move, dir);
+          if (!test.CheckFit(move, stat, assm, ot)) break;
 
-          if (test.CheckFree(part, dir)){
+          if (test.CheckFree(move, stat, dir)){
+            if (!Apart(assm, ot, rt, move)) return 0;
+            if (!Apart(assm, ot, rt, stat)) return 0;
             return static_cast<Level>(nodes[i].level + 1u);
           }
 

@@ -17,6 +17,8 @@ public:
   bool Fits(const FitTable&, Position) const;
   bool Oriented(const ReflectTable&, bool proper = true) const;
 
+  Assembly Orient(const ReflectTable&, PointGroup) const;
+
   void ToSetForm(const EquivTable&);
 
   const Index& operator[](Position p) const;
@@ -30,7 +32,6 @@ public:
 
 private:
   bool Fits(const FitTable&, Position, Position) const;
-  Assembly Orient(const ReflectTable&, PointGroup) const;
 
   std::array<Index, 6> mData;
 };

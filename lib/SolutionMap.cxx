@@ -13,14 +13,14 @@ void SolutionMap::Add(const Assembly& a)
   Iterator i{mMap.find(s)};
 
   if (i == mMap.end()){
-    Level l{Apart(a, mOffset)};
+    Level l{Apart(a, mOffset, mReflect)};
     if (l) mMap.insert({s, l});
     return;
   }
 
   if (i->second)
   {
-    Level l{Apart(a, mOffset)};
+    Level l{Apart(a, mOffset, mReflect)};
     if (l) i->second = 0;
   }
 }
@@ -28,7 +28,7 @@ void SolutionMap::Add(const Assembly& a)
 void SolutionMap::Print(const std::vector<Piece>& vec) const
 {
   for (auto& entry : mMap){
-    if (entry.second > 4){
+    if (entry.second > 0){
       Permutor perm{entry.first, vec};
       std::cout << entry.first
                 << "  " << std::setw(3) << (int)(entry.second) << "L"
