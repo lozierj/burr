@@ -32,6 +32,19 @@ bool Assembly::Oriented(const ReflectTable& rt, bool proper) const
   return true;
 }
 
+bool Assembly::Symmetric(const ReflectTable& rt, bool proper) const
+{
+  for (Reflect::Type ref{0}; ref < 8; ++ref){
+    for (Rotate::Type rot{0}; rot < 3; ++rot){
+      if (!(Reflect(ref).IsProper()) && proper) continue;
+      if (Orient(rt, {ref, rot}) == *this
+          && (ref != 0 || rot != 0)) return true;
+    }
+  }
+
+  return false;
+}
+
 void Assembly::ToSetForm(const EquivTable& et)
 {
   for (Index& i : mData) i = et(i);
@@ -58,6 +71,15 @@ bool Assembly::operator<(const Assembly& comp) const
   }
 
   return false;
+}
+
+bool Assembly::operator==(const Assembly& comp) const
+{
+  for (unsigned i{0}; i < 6; ++i){
+    if (mData[i] != comp.mData[i]) return false;
+  }
+
+  return true;
 }
 
 int Assembly::Holes(const std::vector<Piece>& vec) const

@@ -16,6 +16,7 @@ public:
 
   bool Fits(const FitTable&, Position) const;
   bool Oriented(const ReflectTable&, bool proper = true) const;
+  bool Symmetric(const ReflectTable&, bool proper = true) const;
 
   Assembly Orient(const ReflectTable&, PointGroup) const;
 
@@ -25,6 +26,7 @@ public:
   Index& operator[](Position p);
 
   bool operator<(const Assembly&) const;
+  bool operator==(const Assembly&) const;
 
   int Holes(const std::vector<Piece>&) const;
 
