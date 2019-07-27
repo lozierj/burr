@@ -17,7 +17,13 @@ public:
   void Print(const std::vector<Piece>&) const;
 
 private:
-  using Map = std::map<Assembly, Level>;
+  struct Data{
+    unsigned short assms;
+    Level level;
+    unsigned char solns;
+  };
+
+  using Map = std::map<Assembly, Data>;
   Map mMap;
   const EquivTable& mEquiv;
   const OffsetTable& mOffset;
