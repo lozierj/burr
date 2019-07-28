@@ -14,45 +14,37 @@ void SolutionMap::Add(const Assembly& a)
 
   if (i == mMap.end()){
     Level l{Apart(a, mOffset, mReflect)};
-    if (l) mMap.insert({s, {1, l, 1}});
-    else mMap.insert({s, {1, l, 0}});
+    mMap.insert({s, {1, l}});
     return;
   }
 
-  if (i->second.level)
-  {
-    Level l{Apart(a, mOffset, mReflect)};
+  if (i->second.assms){
 
-    if (l){
-      i->second.level = std::min(i->second.level, l);
-      ++(i->second.solns);
+    if (i->second.level){ //if unique solution so far
+
+      Level l{Apart(a, mOffset, mReflect)};
+
+      if (l) i->second.assms = 0;
+      else ++(i->second.assms);
+
+    }else{ //if no solution so far
+
+      Level l{Apart(a, mOffset, mReflect)};
+      i->second.level = l;
+      ++(i->second.assms);
+
     }
-
-    ++(i->second.assms);
-  }
-
-  if (i->second.level == 0)
-  {
-    Level l{Apart(a, mOffset, mReflect)};
-
-    i->second.level = l;
-    if (l){
-      ++(i->second.solns);
-    }
-
-    ++(i->second.assms);
   }
 }
 
 void SolutionMap::Print(const std::vector<Piece>& vec) const
 {
   for (auto& entry : mMap){
-    if (entry.second.level){
+    if (entry.second.assms && entry.second.level){
       std::cout << entry.first
                 << "  " << std::setw(3) << (int)(entry.second.level) << "L"
                 << "  " << std::setw(3) << entry.first.Holes(vec) << "H"
                 << "  " << std::setw(3) << (int)(entry.second.assms) << "A"
-                << "  " << std::setw(3) << (int)(entry.second.solns) << "S"
                 << std::endl;
     }
   }

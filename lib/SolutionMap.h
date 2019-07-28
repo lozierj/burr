@@ -20,7 +20,6 @@ private:
   struct Data{
     unsigned short assms;
     Level level;
-    unsigned char solns;
   };
 
   using Map = std::map<Assembly, Data>;
