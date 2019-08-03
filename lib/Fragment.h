@@ -16,6 +16,10 @@ public:
   bool CheckFit(Partition move, Assembly, const OffsetTable&) const;
   bool operator==(const Fragment&) const;
 
+  friend std::ostream& operator<<(std::ostream&, const Fragment&);
+
 private:
   std::array<Translate, 5> mDeltas;
 };
+
+std::ostream& operator<<(std::ostream&, const Fragment&);

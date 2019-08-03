@@ -53,3 +53,9 @@ Translate::Type operator*(const Translate& lhs, const Translate& rhs)
       lhs.GetRep().y*rhs.GetRep().y +
       lhs.GetRep().z*rhs.GetRep().z);
 }
+
+std::ostream& operator<<(std::ostream& os, const Translate& t)
+{
+  os << t.mOffset;
+  return os;
+}

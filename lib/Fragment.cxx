@@ -78,3 +78,12 @@ bool Fragment::operator==(const Fragment& rhs) const
 
   return true;
 }
+
+std::ostream& operator<<(std::ostream& os, const Fragment& f)
+{
+  for (unsigned i{0}; i < 4; ++i){
+    os << f.mDeltas[i] << ", ";
+  }
+  os << f.mDeltas[4];
+  return os;
+}

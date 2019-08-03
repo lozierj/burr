@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "Coordinates.h"
 
 class Translate{
@@ -19,9 +21,13 @@ public:
   bool operator!=(const Translate&) const;
   Translate operator-() const;
 
+  friend std::ostream& operator<<(std::ostream&, const Translate&);
+
 private:
   Coordinates mOffset;
 };
 
 Translate operator-(const Translate&, const Translate&);
 Translate::Type operator*(const Translate&, const Translate&);
+
+std::ostream& operator<<(std::ostream&, const Translate&);
