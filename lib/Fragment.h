@@ -1,3 +1,5 @@
+#pragma once
+
 #include <array>
 
 #include "Assembly.h"
@@ -19,7 +21,7 @@ public:
   friend std::ostream& operator<<(std::ostream&, const Fragment&);
 
 private:
-  std::array<Translate, 5> mDeltas;
+  std::array<Translate, 6> mDeltas;
 };
 
 std::ostream& operator<<(std::ostream&, const Fragment&);

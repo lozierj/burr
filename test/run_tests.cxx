@@ -1,6 +1,7 @@
 #include "Test.h"
 
 #include <exception>
+#include <iostream>
 
 int main()
 {

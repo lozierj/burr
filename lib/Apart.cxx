@@ -8,7 +8,7 @@
 #include "Translate.h"
 
 Level Apart(Assembly assm, const OffsetTable& ot, const ReflectTable& rt,
-            Partition set)
+            Partition set, Fragment root)
 {
   struct Node{
     bool operator==(const Fragment& f) const {return frag == f;}
@@ -19,14 +19,7 @@ Level Apart(Assembly assm, const OffsetTable& ot, const ReflectTable& rt,
 
   if (!set.ThreeAxes()) return 1;
 
-  if (!set.IsIn(5)){
-    set.RotateXZ();
-    assm = assm.Orient(rt, {5u, 0u});
-    assert(set.IsIn(5));
-  }
-
   std::vector<Node> nodes;
-  Fragment root;
   nodes.push_back({root, 0});
 
   static std::array<Translate, 6> directions{{
@@ -34,7 +27,7 @@ Level Apart(Assembly assm, const OffsetTable& ot, const ReflectTable& rt,
 
   for (unsigned i{0}; i < nodes.size(); ++i){
     for (const Translate dir : directions){
-      for (Partition move{1u}; !move.IsIn(5); ++move){
+      for (Partition move{1u}; !move.IsIn(set.First()); ++move){
 
         if (!move.IsSubset(set)) continue;
         Partition stat = move.Complement(set);

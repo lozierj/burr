@@ -15,9 +15,28 @@ bool Partition::IsSubset(Partition super) const
   return !(~super.mData & mData);
 }
 
+bool Partition::IsSingle() const
+{
+  if (!mData) return false;
+  return !(mData & (mData - 1u));
+}
+
 Partition Partition::Complement(Partition super) const
 {
   return super.mData & ~mData;
+}
+
+unsigned Partition::First() const
+{
+  Partition::Type test{mData};
+  unsigned ret{0u};
+
+  while(test > 1){
+    ++ret;
+    test >>= 1;
+  }
+
+  return ret;
 }
 
 void Partition::RotateXZ()

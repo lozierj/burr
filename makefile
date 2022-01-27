@@ -21,10 +21,12 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
   #    $* stem with which an implicit rule matches (part that matches %)
 
 CPPFLAGS = -Wall -Wextra -std=c++17 -O3 -DNDEBUG
+#CPPFLAGS = -Wall -Wextra -std=c++17 -g
   #-Wall -Wextra warnings
   #-O3 max opt
   #-g produce debugging information
   #-pg produce profiling information
+  #-DNDEBUG disable assert
 
 COMPILE= g++ $(DEPFLAGS) $(CPPFLAGS) -c
   #-c compile but do not link

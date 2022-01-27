@@ -10,7 +10,7 @@ public:
 
   explicit Translate(Coordinates o) : mOffset{o} {}
   Translate(Type x, Type y, Type z) : mOffset{x, y, z} {}
-  Translate() = default;
+  Translate() = default; // Coordinates defaults to 0, 0, 0
 
   Coordinates GetRep() const {return mOffset;}
 

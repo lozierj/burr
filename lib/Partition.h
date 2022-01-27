@@ -13,7 +13,9 @@ public:
   bool IsIn(Position p) const;
   bool ThreeAxes() const;
   bool IsSubset(Partition) const;
+  bool IsSingle() const;
   Partition Complement(Partition) const;
+  unsigned First() const;
 
   void RotateXZ();
   void operator++() {++mData;}

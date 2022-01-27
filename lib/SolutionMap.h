@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Assembly.h"
-#include "Apart.h"
+#include "SubApart.h"
 #include "Piece.h"
 
 class SolutionMap{
@@ -19,7 +19,7 @@ public:
 private:
   struct Data{
     unsigned short assms;
-    Level level;
+    SubLevel level;
   };
 
   using Map = std::map<Assembly, Data>;
